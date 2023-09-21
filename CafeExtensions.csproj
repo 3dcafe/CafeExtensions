@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <PackageProjectUrl>https://github.com/3dcafe/CafeExtensions</PackageProjectUrl>
     <RepositoryUrl>https://github.com/3dcafe/CafeExtensions</RepositoryUrl>
+    <ApplicationIcon>kandinsky-download-1695293561137.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="ico_main.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
