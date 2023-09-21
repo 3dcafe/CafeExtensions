@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <PackageProjectUrl>https://github.com/3dcafe/CafeExtensions</PackageProjectUrl>
     <RepositoryUrl>https://github.com/3dcafe/CafeExtensions</RepositoryUrl>
-    <ApplicationIcon>kandinsky-download-1695293561137.ico</ApplicationIcon>
+    <ApplicationIcon>ico_main.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
