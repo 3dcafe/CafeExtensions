@@ -7,6 +7,15 @@
     <PackageProjectUrl>https://github.com/3dcafe/CafeExtensions</PackageProjectUrl>
     <RepositoryUrl>https://github.com/3dcafe/CafeExtensions</RepositoryUrl>
     <ApplicationIcon>ico_main.ico</ApplicationIcon>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>CafeExtensions</Title>
+    <Version>1.0.0</Version>
+    <Authors>Nikolay Latin</Authors>
+    <Company>3dcafe</Company>
+    <Copyright>3dcafe</Copyright>
+    <PackageIcon>image.png</PackageIcon>
+    <RepositoryType>git</RepositoryType>
+    <PackAsTool>False</PackAsTool>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +26,13 @@
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="image.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
