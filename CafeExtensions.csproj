@@ -8,7 +8,7 @@
     <RepositoryUrl>https://github.com/3dcafe/CafeExtensions</RepositoryUrl>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>CafeExtensions</Title>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Authors>Nikolay Latin</Authors>
     <Company>3dcafe</Company>
     <Copyright>3dcafe</Copyright>
@@ -16,10 +16,6 @@
     <RepositoryType>git</RepositoryType>
     <PackAsTool>False</PackAsTool>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.0" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Update="image.png">

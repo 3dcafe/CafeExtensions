@@ -46,23 +46,20 @@ namespace CafeExtensions.SimpleModels
         }
     }
     /// <summary>
-    /// Ответы от сервера
+    /// Server responses.
     /// </summary>
     public class AccoResponse
     {
         /// <summary>
-        /// Конструктор
+        /// Social account information.
         /// </summary>
-        public AccoResponse() { }
+        public AccountSocialInfo? Social { get; set; }
         /// <summary>
-        /// Социалка
+        /// Error information.
         /// </summary>
-        public AccountSocialInfo Social { get; set; }
-        /// <summary>
-        /// Ошибки
-        /// </summary>
-        public AccoResponseError Error { get; set; }
+        public AccoResponseError? Error { get; set; }
     }
+
     /// <summary>
     /// Объект ошибки авторизации
     /// </summary>
