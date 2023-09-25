@@ -2,14 +2,14 @@
 
 namespace CafeExtensions.Services;
 /// <summary>
-/// Базовый интерфейс для службы выдачи токенов
+/// Base interface for token issuance service.
 /// </summary>
 public interface IJWTTokenService
 {
     /// <summary>
-    /// Получить токен базовый метод который должен быть реализован
+    /// Get a JWT security token - a base method that should be implemented.
     /// </summary>
-    /// <param name="user"></param>
-    /// <returns></returns>
+    /// <param name="user">The user for whom the token is generated.</param>
+    /// <returns>The JWT security token.</returns>
     string GetJwtSecurityToken(IUser user);
 }
