@@ -21,5 +21,13 @@
         /// Apple login
         /// </summary>
         Apple = 3,
+        /// <summary>
+        /// Russian main system portal
+        /// </summary>
+        Esia = 4,
+        /// <summary>
+        /// World social network with name Facebook(Meta)
+        /// </summary>
+        Facebook = 5,
     }
 }
