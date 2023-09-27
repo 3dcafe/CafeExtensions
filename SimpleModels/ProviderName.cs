@@ -29,5 +29,9 @@
         /// World social network with name Facebook(Meta)
         /// </summary>
         Facebook = 5,
+        /// <summary>
+        /// World search Engine Google
+        /// </summary>
+        Google = 6,
     }
 }
