@@ -113,5 +113,23 @@
 				return Convert.ToHexString(hashBytes); 
 			}
 		}
-	}
+        /// <summary>
+        /// Generate random color
+        /// </summary>
+        /// <returns></returns>
+        public static string GenerateRandomColor()
+        {
+            var s = "0123456789abcdef";
+            var rnd = new Random();
+
+            var color = "";
+
+            for (int i = 0; i < 6; i++)
+            {
+                color += s.ElementAt(rnd.Next(s.Length));
+            }
+
+            return $"#{color}";
+        }
+    }
 }
