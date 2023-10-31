@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 
 namespace CafeExtensions;
+#warning check namesapce
 /// <summary>
 /// Extension for work with DateTime of Type
 /// </summary>
