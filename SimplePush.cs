@@ -27,6 +27,10 @@ namespace CafeExtensions
         /// Контект который отправляем
         /// </summary>
         public Contents contents { get; set; }
+        /// <summary>
+        /// Подзаголовок
+        /// </summary>
+        public Subtitle? subtitle { get; set; }
     }
     /// <summary>
     /// Заголовок
@@ -49,5 +53,11 @@ namespace CafeExtensions
         public string en { get; set; }
     }
 
-
+    /// <summary>
+    /// Подзаголовок
+    /// </summary>
+    public class Subtitle
+    {
+        public string en { get; set; }
+    }
 }
