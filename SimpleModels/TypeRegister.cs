@@ -1,21 +1,23 @@
-﻿namespace CafeExtensions.SimpleModels
+﻿namespace CafeExtensions.SimpleModels;
+/// <summary>
+/// Type register user
+/// </summary>
+public enum TypeRegister
 {
     /// <summary>
-    /// Через что зарегестрировался пользователь
+    /// Phone number
     /// </summary>
-    public enum TypeRegister
-    {
-        /// <summary>
-        /// Номер телефона
-        /// </summary>
-        Phone = 0,
-        /// <summary>
-        /// Почта
-        /// </summary>
-        Email = 1,
-        /// <summary>
-        /// Социальные сети
-        /// </summary>
-        Social = 2,
-    }
+    Phone = 0,
+    /// <summary>
+    /// Email
+    /// </summary>
+    Email = 1,
+    /// <summary>
+    /// Social media
+    /// </summary>
+    Social = 2,
+    /// <summary>
+    /// Login and password from an external or local system
+    /// </summary>
+    LoginAndPassword = 3,
 }

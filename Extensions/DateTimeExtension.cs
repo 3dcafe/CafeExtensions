@@ -147,7 +147,7 @@ public static class DateTimeExtension
         }
     }
     /// <summary>
-    /// Кeturn date in text format ru region
+    /// Return date in text format ru region
     /// </summary>
     /// <param name="date">дата</param>
     /// <param name="isLastLogin"></param>
