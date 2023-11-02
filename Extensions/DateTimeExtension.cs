@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace CafeExtensions;
+namespace CafeExtensions.Extensions;
 /// <summary>
 /// Extension for work with DateTime of Type
 /// </summary>
@@ -147,7 +147,7 @@ public static class DateTimeExtension
         }
     }
     /// <summary>
-    /// return date in text format ru region
+    /// Кeturn date in text format ru region
     /// </summary>
     /// <param name="date">дата</param>
     /// <param name="isLastLogin"></param>
@@ -282,23 +282,45 @@ public static class DateTimeExtension
                 return dateTime.ToString("dd.MM.yy");
         }
     }
-    public static DateTime StartOfDay(this DateTime theDate)
+    /// <summary>
+    /// This method returns a new DateTime object representing the start of the day for the given date. 
+    /// It uses the Date property to zero out the hours, minutes, seconds, and milliseconds of the time, leaving only the date portion.
+    /// This is useful if you need to perform operations related to the start of a day.
+    /// </summary>
+    /// <param name="dateTime"></param>
+    /// <returns></returns>
+    public static DateTime StartOfDay(this DateTime dateTime)
     {
-        return theDate.Date;
+        return dateTime.Date;
     }
-
-    public static DateTime EndOfDay(this DateTime theDate)
+    /// <summary>
+    /// This method returns a new DateTime object representing the end of the day for the given date. 
+    /// It starts by obtaining the start of the next day, adds one second (in ticks), and then subtracts 1 tick. 
+    /// This method can be useful when you need an exact representation of the end of the day.
+    /// </summary>
+    /// <param name="dateTime"></param>
+    /// <returns></returns>
+    public static DateTime EndOfDay(this DateTime dateTime)
     {
-        return theDate.Date.AddDays(1).AddTicks(-1);
+        return dateTime.Date.AddDays(1).AddTicks(-1);
     }
-
-    public static long ToUnixTimestamp(this DateTime d)
+    /// <summary>
+    /// This method converts a DateTime object to a Unix timestamp (the number of seconds elapsed since January 1, 1970). 
+    /// It subtracts the initial date (January 1, 1970) from the provided date and returns the result as a long integer.
+    /// Note that this method does not account for time zones.
+    /// </summary>
+    /// <param name="dateTime"></param>
+    /// <returns></returns>
+    public static long ToUnixTimestamp(this DateTime dateTime)
     {
-        var epoch = d - new DateTime(1970, 1, 1, 0, 0, 0);
+        var epoch = dateTime - new DateTime(1970, 1, 1, 0, 0, 0);
         return (long)epoch.TotalSeconds;
     }
     /// <summary>
     /// Convert to unix time
+    /// This method is designed to convert a Unix timestamp (representing the number of seconds since January 1, 1970) into a DateTime object.
+    /// It does so by first creating a base DateTime object set to the Unix epoch (January 1, 1970, 00:00:00 UTC).
+    /// Then, it adds the provided number of seconds (the Unix timestamp) to this base date and finally converts the resulting DateTime object to the local time.
     /// </summary>
     /// <param name="unixtime"></param>
     /// <returns></returns>
@@ -309,7 +331,7 @@ public static class DateTimeExtension
         return dtDateTime;
     }
     /// <summary>
-    /// does the date interval intersect in another date interval
+    /// Does the date interval intersect in another date interval
     /// </summary>
     /// <param name="start1"></param>
     /// <param name="end1"></param>
@@ -329,18 +351,11 @@ public static class DateTimeExtension
     {
         return d.AddHours(3);
     }
-
-    public static DateTime? SetKindUtc(this DateTime? dateTime)
-    {
-        if (dateTime.HasValue)
-        {
-            return dateTime.Value.SetKindUtc();
-        }
-        else
-        {
-            return null;
-        }
-    }
+    /// <summary>
+    /// The method serves a specific purpose, ensuring that a DateTime object is in the Utc kind, which can be useful when dealing with time zone-agnostic operations or when you need consistency in your application's handling of time.
+    /// </summary>
+    /// <param name="dateTime"></param>
+    /// <returns></returns>
     public static DateTime SetKindUtc(this DateTime dateTime)
     {
         if (dateTime.Kind == DateTimeKind.Utc) { return dateTime; }
