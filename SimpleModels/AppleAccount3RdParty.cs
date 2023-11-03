@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Text;
 using CafeExtensions.Helpers;
 using System.Security.Claims;
+using CafeExtensions.Extensions;
 
 namespace CafeExtensions.SimpleModels
 {
