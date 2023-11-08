@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CafeExtensions", "CafeExtensions.csproj", "{7C7D1661-3446-4D3E-AE25-990F80D25BD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectCafeExtensions", "..\TestProjectCafeExtensions\TestProjectCafeExtensions.csproj", "{3A174517-146B-44AB-A70A-63AF6CD3E9BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7C7D1661-3446-4D3E-AE25-990F80D25BD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C7D1661-3446-4D3E-AE25-990F80D25BD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C7D1661-3446-4D3E-AE25-990F80D25BD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A174517-146B-44AB-A70A-63AF6CD3E9BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A174517-146B-44AB-A70A-63AF6CD3E9BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A174517-146B-44AB-A70A-63AF6CD3E9BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A174517-146B-44AB-A70A-63AF6CD3E9BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

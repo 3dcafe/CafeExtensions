@@ -1,0 +1,35 @@
+namespace TestProjectCafeExtensions
+{
+    public class UnitTest1
+    {
+        [Fact]
+        public void GenerateDescription_ValidInput_ReturnsTrimmedDescription()
+        {
+            // Arrange
+            string title = "QIRD представляет новое мобильное приложение для удобства пациентов";
+            string body = "Мы рады сообщить об удивительной новости для всех наших клиентов - компания Qird представляет совершенно новое мобильное приложение, разработанное для вас, чтобы сделать вашу медицинскую заботу еще более комфортной и доступной. Это приложение - результат нашей неутомимой работы над тем, чтобы предоставить вам лучший опыт в области медицинских услуг. Мы сделали его максимально удобным и функциональным, чтобы удовлетворить все ваши потребности. Что вы найдете в нашем новом мобильном приложении: Запись на прием в вашу клинику: Теперь запись к врачу стала проще, чем когда-либо. Вы можете выбрать удобное для вас время и специалиста, и записаться всего несколькими касаниями. Просмотр результатов анализов: Больше не нужно ждать или приходить в клинику, чтобы узнать результаты анализов. Все данные теперь доступны в вашем мобильном устройстве. Медкарта и синхронизация данных: Ваша медицинская история теперь всегда под рукой. Вы можете просматривать свои записи и синхронизировать данные из клиники. Связь с клиникой: Если у вас есть вопросы или нужна помощь, вы можете легко связаться с клиникой через приложение. Мы также гордимся предоставлением собственного брендированного приложения для наших клиник-партнеров, что дает им возможность расширить свой клиентский опыт. Не упустите шанс улучшить ваш опыт медицинского обслуживания с нашим новым мобильным приложением. Оно доступно для скачивания в магазинах приложений прямо сейчас. Перейдите к новым высотам комфорта и удобства в медицинской заботе с Qird!";
+            int maxDescriptionLength = 100;
+
+            // Act
+            string description = CafeExtensions.Services.SEOGenerator.GenerateDescription(title, body, maxDescriptionLength);
+
+            // Assert
+            Assert.True(description.Length <= maxDescriptionLength);
+        }
+
+        [Fact]
+        public void GenerateDescription_LongInput_TruncatesDescription()
+        {
+            // Arrange
+            string title = "Long Page Title with Many Words";
+            string body = "This is a very long text with many words to exceed the maximum description length.";
+            int maxDescriptionLength = 20;
+
+            // Act
+            string description = CafeExtensions.Services.SEOGenerator.GenerateDescription(title, body, maxDescriptionLength);
+
+            // Assert
+            Assert.True(description.Length <= maxDescriptionLength);
+        }
+    }
+}
