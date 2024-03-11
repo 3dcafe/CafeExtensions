@@ -37,10 +37,23 @@ namespace CafeExtensions.Repositories
         {
             using (var httpClient = new HttpClient())
             {
+                if (_headers.Count > 0)
+                {
+                    httpClient.DefaultRequestHeaders.Clear();
+                    foreach (var item in _headers)
+                    {
+                        httpClient.DefaultRequestHeaders.Add(item.Key, item.Value);
+                    }
+                }
+
                 if (Login?.Length > 0 && Password?.Length > 0)
                 {
                     var authenticationString = $"{Login}:{Password}";
                     var base64EncodedAuthenticationString = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(authenticationString));
+
+                    // Remove additional Authorization header from above
+                    if (httpClient.DefaultRequestHeaders.Contains("Authorization")) httpClient.DefaultRequestHeaders.Remove("Authorization");
+
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Basic " + base64EncodedAuthenticationString);
                 }
 
