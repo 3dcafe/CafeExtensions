@@ -44,6 +44,15 @@ namespace CafeExtensions.Repositories
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Basic " + base64EncodedAuthenticationString);
                 }
 
+                if (_headers.Count > 0)
+                {
+                    httpClient.DefaultRequestHeaders.Clear();
+                    foreach (var item in _headers)
+                    {
+                        httpClient.DefaultRequestHeaders.Add(item.Key, item.Value);
+                    }
+                }
+
                 var response = await httpClient.GetAsync(url);
                 var restClientResponse = new RestClientResponse<T>
                 {
