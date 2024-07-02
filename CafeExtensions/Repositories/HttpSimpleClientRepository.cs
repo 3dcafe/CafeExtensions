@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace CafeExtensions.Repositories
 {
-    public class HttpSimpleClientRepository
+    public class HttpSimpleClientRepository : IDisposable
     {
         private string? Login { get; set; }
         private string? Password { get; set; }
@@ -357,6 +357,11 @@ namespace CafeExtensions.Repositories
                 {
                     { "OrganizationId" , organizationId }
                 };
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
         }
     }
 }
