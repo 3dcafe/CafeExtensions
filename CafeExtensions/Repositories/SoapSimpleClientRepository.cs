@@ -1,8 +1,5 @@
 ﻿using System.Net;
-using System.Net.Http;
-using static System.Net.Mime.MediaTypeNames;
 using System.Text;
-using System.Net.Http.Json;
 
 namespace CafeExtensions.Repositories
 {
