@@ -8,7 +8,7 @@
     <RepositoryUrl>https://github.com/3dcafe/CafeExtensions</RepositoryUrl>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>CafeExtensions</Title>
-    <Version>1.1.4</Version>
+    <Version>1.1.6</Version>
     <Authors>Nikolay Latin</Authors>
     <Company>3dcafe</Company>
     <Copyright>3dcafe</Copyright>

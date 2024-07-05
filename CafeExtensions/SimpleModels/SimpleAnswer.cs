@@ -1,4 +1,6 @@
-﻿namespace CafeExtensions.SimpleModels;
+﻿using System.Text.Json.Serialization;
+
+namespace CafeExtensions.SimpleModels;
 /// <summary>
 /// Simple answer response
 /// </summary>
@@ -26,4 +28,8 @@ public class SimpleAnswer
     /// Error text
     /// </summary>
     public string Error { get; set; } = string.Empty;
+    /// <summary>
+    /// Text for answer
+    /// </summary>
+    public string? Text { get; set; }
 }
