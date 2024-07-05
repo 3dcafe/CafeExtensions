@@ -31,7 +31,8 @@ namespace CafeExtensions.Repositories
 
         public async Task<RestClientResponse<string>?> ExecuteAsync(string url, string body)
         {
-            using (HttpContent content = new StringContent(body, Encoding.UTF8, "text/xml"))
+            using (HttpContent content = new StringContent(body, Encoding.UTF8, "application/xml"))
+            using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url))
             using (var httpClient = new HttpClient())
             {
                 if (_headers.Count > 0)
@@ -54,27 +55,29 @@ namespace CafeExtensions.Repositories
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Basic " + base64EncodedAuthenticationString);
                 }
 
-                httpClient.DefaultRequestHeaders.Add("SOAPAction", "#POST");
-                httpClient.DefaultRequestHeaders.Add("Content-Type", "application/xml");
+                request.Headers.Add("SOAPAction", "#POST");
+                request.Content = content;
 
-                var response = await httpClient.PostAsync(url, content);
-                var data = await response.Content.ReadAsStringAsync();
-                try
+                using (HttpResponseMessage response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead))
                 {
-                    var restClientResponse = new RestClientResponse<string>
+                    var data = await response.Content.ReadAsStringAsync();
+                    try
                     {
-                        StatusCode = (int)response.StatusCode,
-                        StatusName = response.StatusCode,
-                        Message = response.ReasonPhrase,
-                        Response = response.StatusCode != HttpStatusCode.OK ?
-                            default :
-                            data
-                    };
-                    return restClientResponse;
-                }
-                catch (Exception)
-                {
-                    return default;
+                        var restClientResponse = new RestClientResponse<string>
+                        {
+                            StatusCode = (int)response.StatusCode,
+                            StatusName = response.StatusCode,
+                            Message = response.ReasonPhrase,
+                            Response = response.StatusCode != HttpStatusCode.OK ?
+                                default :
+                                data
+                        };
+                        return restClientResponse;
+                    }
+                    catch (Exception)
+                    {
+                        return default;
+                    }
                 }
             }
         }
