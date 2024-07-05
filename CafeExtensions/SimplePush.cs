@@ -31,6 +31,10 @@ namespace CafeExtensions
         /// Подзаголовок
         /// </summary>
         public Subtitle? subtitle { get; set; }
+        /// <summary>
+        /// Color push on android
+        /// </summary>
+        public string? android_accent_color { get; set; } = null;
     }
     /// <summary>
     /// Заголовок
