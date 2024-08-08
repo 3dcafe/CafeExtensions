@@ -18,7 +18,7 @@ namespace MorePayments.Payment.Tinkoff
             TERMINAL_PASS = password;
         }
 
-        public async Task<TinkoffResponse?> InitAsync(uint price, string description, int recordId, string phoneNumber)
+        public async Task<TinkoffResponse?> InitAsync(uint price, string description, string phoneNumber, string userId)
         {
             TinkoffRequestBody body = new()
             {
@@ -43,8 +43,8 @@ namespace MorePayments.Payment.Tinkoff
                     }
                 },
                 NotificationURL = "https://qird.ru",
-                FailURL = $"https://api.qird.ru/api/WebHook/confirm-record/{recordId}",
-                SuccessURL = $"https://api.qird.ru/api/WebHook/confirm-record/{recordId}"
+                FailURL = $"https://api.qird.ru/api/WebHook/confirm-record?userId={userId}",
+                SuccessURL = $"https://api.qird.ru/api/WebHook/confirm-record?userId={userId}",
             };
 
             body.Token = TokenGenerationHelper.GenerateToken(body, TERMINAL_PASS);
