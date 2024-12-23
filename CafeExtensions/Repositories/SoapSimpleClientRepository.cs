@@ -4,7 +4,7 @@ namespace CafeExtensions.Repositories;
 /// <summary>
 /// A repository class for making SOAP-based HTTP requests with optional basic authentication and custom timeout handling.
 /// </summary>
-public class SoapSimpleClientRepository
+public class SoapSimpleClientRepository : IDisposable
 {
     private string? Login { get; set; } // Stores the login for basic authentication
     private string? Password { get; set; } // Stores the password for basic authentication
@@ -102,5 +102,10 @@ public class SoapSimpleClientRepository
             Message = response.ReasonPhrase,
             Response = response.IsSuccessStatusCode ? data : null
         };
+    }
+
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);
     }
 }
