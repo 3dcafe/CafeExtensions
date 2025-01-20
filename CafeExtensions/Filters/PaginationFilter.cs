@@ -8,7 +8,7 @@
         /// <summary>
         /// Поисковое слово
         /// </summary>
-        public string search { get; set; }
+        public string Search { get; set; }
         /// <summary>
         /// Номер страницы
         /// </summary>
