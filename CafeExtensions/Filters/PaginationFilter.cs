@@ -22,9 +22,9 @@
         /// </summary>
         public PaginationFilter()
         {
-            this.PageNumber = 1;
-            this.PageSize = 10;
-            this.search = string.Empty;
+            PageNumber = 1;
+            PageSize = 10;
+            Search = string.Empty;
         }
         /// <summary>
         /// Расширеный конструктор с параметрами
@@ -33,9 +33,9 @@
         /// <param name="pageSize"></param>
         public PaginationFilter(int pageNumber, int pageSize)
         {
-            this.PageNumber = pageNumber < 1 ? 1 : pageNumber;
-            this.PageSize = pageSize > 10 ? 10 : pageSize;
-            this.search = string.Empty;
+            PageNumber = pageNumber < 1 ? 1 : pageNumber;
+            PageSize = pageSize > 10 ? 10 : pageSize;
+            Search = string.Empty;
         }
         /// <summary>
         /// Расширеный конструктор с поиском
@@ -45,9 +45,9 @@
         /// <param name="search"></param>
         public PaginationFilter(int pageNumber, int pageSize, string search)
         {
-            this.PageNumber = pageNumber < 1 ? 1 : pageNumber;
-            this.PageSize = pageSize > 10 ? 10 : pageSize;
-            this.search = search;
+            PageNumber = pageNumber < 1 ? 1 : pageNumber;
+            PageSize = pageSize > 10 ? 10 : pageSize;
+            Search = search;
         }
     }
 
