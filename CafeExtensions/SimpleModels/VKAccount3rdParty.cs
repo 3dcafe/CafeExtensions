@@ -1,4 +1,7 @@
-﻿using System.Text.Json;
+﻿using CafeExtensions.Exceptions;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace CafeExtensions.SimpleModels
 {
@@ -10,7 +13,7 @@ namespace CafeExtensions.SimpleModels
         /// <summary>
         /// Адрес проверки токена
         /// </summary>
-        protected override string ValidationUrl { get { return "https://api.vk.com/method/account.getProfileInfo?access_token={0}&v=5.131"; } }
+        protected override string ValidationUrl { get { return "https://api.vk.com/method/secure.checkToken?token={0}&access_token=d5517937d5517937d55179374fd643fa97dd551d5517937b6b1ccb973fa59e8735d67fc&v=5.131"; } }
         /// <summary>
         /// Проверить токен
         /// </summary>
@@ -18,7 +21,13 @@ namespace CafeExtensions.SimpleModels
         /// <returns></returns>
         public override async Task<AccoResponse> ValidateAccount(string token)
         {
-            var response = await GetResultAsync(token);
+            var validationRespone = await GetResultAsync(token);
+            if (validationRespone == null || validationRespone.Message == null) throw new AccessErrorException("Error - validation error");
+
+            var validation = JsonSerializer.Deserialize<ValidationResponseVK>(validationRespone.Message);
+
+            var userInfoUrl = $"https://api.vk.com/method/users.get?user_ids={validation.response.user_id}&access_token=d5517937d5517937d55179374fd643fa97dd551d5517937b6b1ccb973fa59e8735d67fc&v=5.131&fields=first_name,last_name,photo_200,city,bdate,sex&lang=ru";
+            var response = await GetResultByUrlAsync(userInfoUrl);
             var vkObj = JsonSerializer.Deserialize<ResponseVK>(response.Message);
             var accoResponse = new AccoResponse();
             if (response.Code != System.Net.HttpStatusCode.OK)
@@ -26,9 +35,9 @@ namespace CafeExtensions.SimpleModels
             else
                 accoResponse.Social = new AccountSocialInfo 
                 { 
-                    Name = vkObj.response?.first_name,
+                    Name = vkObj.response?[0].first_name,
                     Locale = "Ru",
-                    ExternalId = vkObj.response?.id.ToString(),
+                    ExternalId = vkObj.response?[0].id.ToString(),
                     Provider = ProviderName.VkSocial 
                 };
 
@@ -36,6 +45,19 @@ namespace CafeExtensions.SimpleModels
         }
 
         #region VK Object answers
+        public class ValidationResponseVK
+        {
+            public ValidationResponseResultVK response { get; set; }
+        }
+
+        public class ValidationResponseResultVK
+        {
+            public int date { get; set; }
+            public int expire { get; set; }
+            public int success { get; set; }
+            public int user_id { get; set; }
+        }
+
         /// <summary>
         /// Базовый объект
         /// </summary>
@@ -48,7 +70,7 @@ namespace CafeExtensions.SimpleModels
             /// <summary>
             /// Ответы
             /// </summary>
-            public ResponseVKAnswer? response { get; set; }
+            public List<ResponseVKAnswer>? response { get; set; }
         }
 
         public class ErrorVK
