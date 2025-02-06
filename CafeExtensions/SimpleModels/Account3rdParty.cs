@@ -44,6 +44,33 @@ namespace CafeExtensions.SimpleModels
             }
             return result;
         }
+
+        /// <summary>
+        /// Обработка результата
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        protected async Task<SocialResponse> GetResultByUrlAsync(string url)
+        {
+            SocialResponse result = null;
+            using (var httpClient = new HttpClient())
+            {
+                HttpResponseMessage httpResponseMessage;
+                try
+                {
+                    httpResponseMessage = await httpClient.GetAsync(url);
+
+                    var res = await httpResponseMessage.Content.ReadAsStringAsync();
+                    result = new SocialResponse { Code = httpResponseMessage.StatusCode, Message = res };
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    return null;
+                }
+            }
+            return result;
+        }
     }
     /// <summary>
     /// Server responses.
