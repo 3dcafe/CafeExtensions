@@ -20,4 +20,8 @@ public enum TypeRegister
     /// Login and password from an external or local system
     /// </summary>
     LoginAndPassword = 3,
+    /// <summary>
+    /// Login from web qird widget
+    /// </summary>
+    WebWidget = 4
 }
