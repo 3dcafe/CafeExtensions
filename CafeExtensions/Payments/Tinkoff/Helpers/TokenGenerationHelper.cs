@@ -51,6 +51,37 @@ namespace MorePayments.Payment.Tinkoff.Helpers
             return CalculateHash256(strValues);
         }
 
+        public static string GenerateToken(Dictionary<string, string> model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            var properties = model.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+            var strValues = model.OrderBy(x => x.Key).Select(x => x.Value).Aggregate((x, y) => x + "" + y) + "";
+            return CalculateHash256(strValues);
+        }
+
+        public static string GenerateTokenBase64(Dictionary<string, string> model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            var properties = model.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+            var strValues = model.OrderBy(x => x.Key).Select(x => x.Value).Aggregate((x, y) => x + "" + y) + "";
+            var bytes = Encoding.UTF8.GetBytes(strValues);
+            using (SHA256 mySHA256 = SHA256.Create())
+            {
+                var hashBytes = mySHA256.ComputeHash(bytes);
+                return Convert.ToBase64String(hashBytes);
+            }
+        }
+
         private static string CalculateHash256(string value)
         {
             var bytes = Encoding.UTF8.GetBytes(value);
