@@ -13,7 +13,7 @@ namespace CafeExtensions.SimpleModels
         /// <summary>
         /// Адрес проверки токена
         /// </summary>
-        protected override string ValidationUrl { get { return "https://api.vk.com/method/secure.checkToken?token={0}&access_token=d5517937d5517937d55179374fd643fa97dd551d5517937b6b1ccb973fa59e8735d67fc&v=5.131"; } }
+        protected override string ValidationUrl { get { return "https://api.vk.ru/method/secure.checkToken?token={0}&access_token=d5517937d5517937d55179374fd643fa97dd551d5517937b6b1ccb973fa59e8735d67fc&v=5.131"; } }
         /// <summary>
         /// Проверить токен
         /// </summary>
@@ -26,7 +26,7 @@ namespace CafeExtensions.SimpleModels
 
             var validation = JsonSerializer.Deserialize<ValidationResponseVK>(validationRespone.Message);
 
-            var userInfoUrl = $"https://api.vk.com/method/users.get?user_ids={validation.response.user_id}&access_token=d5517937d5517937d55179374fd643fa97dd551d5517937b6b1ccb973fa59e8735d67fc&v=5.131&fields=first_name,last_name,photo_200,city,bdate,sex&lang=ru";
+            var userInfoUrl = $"https://api.vk.ru/method/users.get?user_ids={validation.response.user_id}&access_token=d5517937d5517937d55179374fd643fa97dd551d5517937b6b1ccb973fa59e8735d67fc&v=5.131&fields=first_name,last_name,photo_200,city,bdate,sex&lang=ru";
             var response = await GetResultByUrlAsync(userInfoUrl);
             var vkObj = JsonSerializer.Deserialize<ResponseVK>(response.Message);
             var accoResponse = new AccoResponse();
